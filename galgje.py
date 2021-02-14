@@ -1,18 +1,33 @@
-import random
-word_list = ['auto', 'fiets', 'raket', 'rugzak']
+import time
 
+print "welkom bij Galgje"
+
+time.sleep (1)
+
+print "Speler 1 kiest een woord, speler 2 moet deze gaan raden"
+
+time.sleep(2)
+
+print "Speler 2 mag maximaal 9 keer een verkeerde letter kiezen"
+
+time.sleep (3)
+
+print "Als speler 2 alle letters goed geraden heeft, wint hij het spel"
+
+time.sleep (1)
+print "Speler 1, welk woord moet speler 2 gaan raden?"
 
 def get_word():
-    word = random.choice(word_list)
+    word = raw_input()
     return word.upper()
 
 #interface die geprint in console word
 def play(word):
     word_completion = "_" * len(word)#streepjes voor niet geraden woorden
     guessed = False #standaard 0 geraden woorden
-    guessed_letters = []#list variable voor geschatte letters
-    guessed_words = []#list variable voor geschatte woorden
-    tries = 6 #hoeveelheid pogingen
+    guessed_letters = []#list var voor geschatte letters
+    guessed_words = []#list var voor geschatte woorden
+    tries = 9 #hoeveelheid pogingen
     print("Laten we galgje spelen!")
     print(display_hangman(tries))
     print(word_completion)
@@ -48,7 +63,7 @@ def play(word):
                 guessed = True
                 word_completion = word
         else:
-            print("Not a valid guess.")
+            print("Ongeldige karakters")
         print(display_hangman(tries))
         print(word_completion)
         print("\n")
@@ -59,7 +74,7 @@ def play(word):
 
 
 def display_hangman(tries):
-    stages = [  # final state: head, torso, both arms, and both legs
+    stages = [  # fase 9 - game over
                 """
                    --------
                    |      |
@@ -69,7 +84,7 @@ def display_hangman(tries):
                    |     / \\
                    -
                 """,
-                # head, torso, both arms, and one leg
+                # fase 8
                 """
                    --------
                    |      |
@@ -79,7 +94,7 @@ def display_hangman(tries):
                    |     / 
                    -
                 """,
-                # head, torso, and both arms
+                # fase 7
                 """
                    --------
                    |      |
@@ -89,7 +104,7 @@ def display_hangman(tries):
                    |      
                    -
                 """,
-                # head, torso, and one arm
+                # fase 6
                 """
                    --------
                    |      |
@@ -99,7 +114,7 @@ def display_hangman(tries):
                    |     
                    -
                 """,
-                # head and torso
+                # fase 5
                 """
                    --------
                    |      |
@@ -109,7 +124,7 @@ def display_hangman(tries):
                    |     
                    -
                 """,
-                # head
+                # fase 4
                 """
                    --------
                    |      |
@@ -119,7 +134,7 @@ def display_hangman(tries):
                    |     
                    -
                 """,
-                # initial empty state
+                # fase 3
                 """
                    --------
                    |      |
@@ -128,7 +143,38 @@ def display_hangman(tries):
                    |      
                    |     
                    -
+                """,
+                #fase 2
                 """
+                   --------
+                   |      
+                   |      
+                   |    
+                   |      
+                   |     
+                   -
+                """,
+                #fase 1: leeg
+                """
+                   
+                   |      
+                   |      
+                   |    
+                   |      
+                   |     
+                   -
+                """,
+                #fase 0 default
+                """
+                   
+                   |      
+                   |      
+                   |    
+                   |      
+                   |     
+                   -
+                """,
+                
     ]
     return stages[tries]
 
